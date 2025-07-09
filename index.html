@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAUNCH</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="game-container">
+    <div id="particles-container"></div>
+    <!-- Game Screens -->
+    <div id="menu-screen" class="screen active">
+      <div class="header">
+        <h1>LAUNCH</h1>
+        <p>"React. Strike. Dominate."</p>
+      </div>
+      <div class="menu-card">
+        <h2>Main Menu</h2>
+        <p>Test your reflexes in this turn-based rhythm battle</p>
+        <button id="start-button" class="button primary">Start Game</button>
+        <button id="start-button" class="button primary" onclick="window.location.href='website.html'">Quit</button>
+        <button id="tutorial-button" class="button secondary">How to Play</button>
+        <p class="note">Defeat 9 opponents and the final boss to win!</p>
+      </div>
+      <div id="tutorial" class="tutorial-card hidden">
+        <h2>How to Play</h2>
+        <p>Learn the basics and master it</p>
+        <div class="tutorial-content">
+          <div>
+            <h3>Game Flow</h3>
+            <ol>
+              <li>Choose your character with unique stats and abilities</li>
+              <li>Each round, select three moves to use in battle</li>
+              <li>Execute your moves by pressing arrow keys to the rhythm</li>
+              <li>Deal damage based on your timing and move power</li>
+              <li>Win 5 rounds to advance to the next opponent</li>
+              <li>Defeat 9 opponents to face the final boss</li>
+            </ol>
+          </div>
+          
+          <div>
+            <h3>Controls</h3>
+            <p>Use the arrow keys (↑, ↓, ←, →) to match the notes as they cross the target line.</p>
+            <div class="controls-display">
+              <div class="key-box">
+                <div class="key">↑</div>
+                <span>Up</span>
+              </div>
+              <div class="key-box">
+                <div class="key">↓</div>
+                <span>Down</span>
+              </div>
+              <div class="key-box">
+                <div class="key">←</div>
+                <span>Left</span>
+              </div>
+              <div class="key-box">
+                <div class="key">→</div>
+                <span>Right</span>
+              </div>
+            </div>
+            <p>The more accurately you time your key presses, the more damage you'll deal!</p>
+          </div>
+          
+          <div>
+            <h3>Move Types</h3>
+            <ul>
+              <li><span class="highlight">Attack Moves:</span> Deal damage to your opponent</li>
+              <li><span class="highlight">Defense Moves:</span> Reduce incoming damage and deal light counter-damage</li>
+              <li><span class="highlight">Special Moves:</span> Powerful attacks with complex rhythm patterns</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3>Tips</h3>
+            <ul>
+              <li>Pay attention to a move's speed - faster moves require quicker reflexes</li>
+              <li>Balance your selection of attack, defense, and special moves</li>
+              <li>The final boss has very complex and powerful moves - be prepared!</li>
+              <li>Practice the timing - Perfect hits deal maximum damage</li>
+            </ul>
+          </div>
+        </div>
+        <button id="back-button" class="button">Back to Menu</button>
+      </div>
+    </div>
+
+    <div id="character-select-screen" class="screen">
+      <h1>Choose Your Fighter</h1>
+      <p>Select a character to begin your journey</p>
+      <div id="character-grid">
+        <!-- Characters will be added here dynamically -->
+      </div>
+      <button id="select-character-button" class="button primary" disabled>Select a Character</button>
+    </div>
+
+    <div id="battle-screen" class="screen">
+      <div class="battle-header">
+        <div class="player-info">
+          <div id="player-icon" class="character-icon"></div>
+          <div>
+            <h3 id="player-name">Player</h3>
+            <div id="player-rounds" class="rounds-indicator"></div>
+            <div id="player-health" class="health-bar">
+              <div class="health-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="battle-info">
+          <div id="round-display">Round 1/10</div>
+          <div id="boss-indicator" class="hidden">BOSS ROUND</div>
+        </div>
+
+        <div class="opponent-info">
+          <div>
+            <h3 id="opponent-name">Opponent</h3>
+            <div id="opponent-rounds" class="rounds-indicator"></div>
+            <div id="opponent-health" class="health-bar">
+              <div class="health-fill"></div>
+            </div>
+          </div>
+          <div id="opponent-icon" class="character-icon"></div>
+        </div>
+      </div>
+
+      <div class="battle-content">
+        <!-- Move selection area -->
+        <div id="move-selection" class="battle-phase">
+          <h2>Select 3 Moves</h2>
+          <p>Different moves have different speeds and timing patterns.</p>
+          
+          <div class="selected-moves">
+            <h3>Selected Moves (<span id="selected-count">0</span>/3):</h3>
+            <div id="selected-moves-display">
+              <div class="move-slot empty">Empty</div>
+              <div class="move-slot empty">Empty</div>
+              <div class="move-slot empty">Empty</div>
+            </div>
+          </div>
+          
+          <div id="available-moves-grid">
+            <!-- Available moves will be added here dynamically -->
+          </div>
+          
+          <button id="confirm-moves-button" class="button primary" disabled>Ready to Battle!</button>
+        </div>
+
+        <!-- Rhythm game area -->
+        <div id="rhythm-phase" class="battle-phase hidden">
+          <h2 id="current-move-name">Attack</h2>
+          
+          <div id="countdown" class="countdown hidden">3</div>
+          
+          <div id="rhythm-track">
+            <canvas id="rhythm-canvas" width="600" height="120"></canvas>
+            <div id="feedback-text" class="feedback hidden">PERFECT!</div>
+          </div>
+          
+          <div class="controls-display">
+            <div class="key-box">
+              <div class="key">↑</div>
+              <span>Up</span>
+            </div>
+            <div class="key-box">
+              <div class="key">↓</div>
+              <span>Down</span>
+            </div>
+            <div class="key-box">
+              <div class="key">←</div>
+              <span>Left</span>
+            </div>
+            <div class="key-box">
+              <div class="key">→</div>
+              <span>Right</span>
+            </div>
+          </div>
+          
+          <p class="note">Press the arrow keys when the notes reach the white line for the best score!</p>
+        </div>
+
+        <!-- Round results area -->
+        <div id="round-end" class="battle-phase hidden">
+          <h2>Round Complete!</h2>
+          <p id="round-message">Result message goes here</p>
+          
+          <div class="results-grid">
+            <div>
+              <h3>Your Moves</h3>
+              <ul id="player-results">
+                <!-- Player move results go here -->
+              </ul>
+            </div>
+            
+            <div>
+              <h3>Opponent Moves</h3>
+              <ul id="opponent-results">
+                <!-- Opponent move results go here -->
+              </ul>
+            </div>
+          </div>
+          
+          <button id="next-round-button" class="button primary">Next Round</button>
+          <button id="continue-button" class="button primary hidden">Continue Fighting</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-over-screen" class="screen">
+      <div class="result-card">
+        <div id="game-over-header">
+          <h2 id="game-over-title">VICTORY!</h2>
+          <p id="game-over-subtitle">You won the match!</p>
+        </div>
+        
+        <div class="match-summary">
+          <div class="fighter-summary">
+            <div id="player-final-icon" class="character-icon large"></div>
+            <h3 id="player-final-name">Player</h3>
+            <div id="player-final-rounds" class="rounds-count">0</div>
+            <div class="rounds-label">rounds won</div>
+          </div>
+          
+          <div class="vs-indicator">VS</div>
+          
+          <div class="fighter-summary">
+            <div id="opponent-final-icon" class="character-icon large"></div>
+            <h3 id="opponent-final-name">Opponent</h3>
+            <div id="opponent-final-rounds" class="rounds-count">0</div>
+            <div class="rounds-label">rounds won</div>
+          </div>
+        </div>
+        
+        <div class="summary-box">
+          <h3>Match Summary</h3>
+          <ul>
+            <li>Total Rounds: <span id="final-round">0</span></li>
+            <li>Character Used: <span id="player-character-used">Character</span></li>
+            <li id="boss-defeated" class="hidden">BOSS DEFEATED: <span id="boss-name">Boss</span></li>
+          </ul>
+        </div>
+        
+        <div id="final-message" class="final-message">Well done! Continue your journey to face the boss!</div>
+        
+        <div class="button-group">
+          <button id="endless-mode-button" class="button secondary hidden">Enter Endless Mode</button>
+          <button id="play-again-button" class="button secondary">Play Again</button>
+          <button id="main-menu-button" class="button primary">Main Menu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio elements -->
+  <audio id="bgm" src="sounds/background.mp3" loop></audio>
+  <audio id="hit-sound" src="sounds/hit.mp3"></audio>
+  <audio id="success-sound" src="sounds/success.mp3"></audio>
+  <audio id="damage-sound" src="sounds/damage.mp3"></audio>
+  <audio id="victory-sound" src="sounds/victory.mp3"></audio>
+  <audio id="defeat-sound" src="sounds/defeat.mp3"></audio>
+  <audio id="select-sound" src="sounds/select.mp3"></audio>
+  <audio id="button-sound" src="sounds/button.mp3"></audio>
+  <audio id="opponent-turn-sound" src="sounds/opponent_turn.mp3"></audio>
+  <audio id="countdown-sound" src="sounds/countdown.mp3"></audio>
+
+  <script src="characters.js"></script>
+  <script src="moves.js"></script>
+  <script src="gamestate.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

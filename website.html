@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launch - The Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">LAUNCH<span>.</span></div>
+        <nav>
+            <ul>
+                <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#" class="nav-link" data-section="news">News</a></li>
+                <li><a href="#" class="nav-link" data-section="team">Team</a></li>
+                <li><a href="#" class="nav-link" data-section="download">Download</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="active">
+            <div class="hero">
+                <h1>Experience the Thrill of Rhythm in Launch</h1>
+                <p>Launch is a rhythm based game and a turn-based strategy game</p>
+                <a href="#" class="btn" data-section="download" onclick="window.location.href='index.html'">Play Now</a>
+            </div>
+            
+            <img src="Assets/Screenshot 2025-04-16 230223.png" alt="Launch Game Screenshot" class="game-screenshot">
+            
+            <h2>Key Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>Expressive & Stylish Character Design</h3>
+                    <p>Unique, visually appealing characters with animations that react to the rhythm, making gameplay feel more alive.</p>
+                </div>
+                <div class="feature">
+                    <h3>Simple, Addictive Gameplay</h3>
+                    <p>Time your arrow keys to the beat with intuitive controls and clear visual cues, making it easy to learn but hard to master.</p>
+                </div>
+                <div class="feature">
+                    <h3>Dynamic Sound & Music</h3>
+                    <p>Sound effects and music layers intensify as you hit combos, to make your experience more engaging.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <h1>About Launch</h1>
+            <p>Launch is a passion project developed by a small team of space enthusiasts and game developers. Our goal was to create a game that captures the wonder and excitement of rhythm based pokemon games while providing engaging gameplay mechanics.</p>
+            
+            <p>The game has been in development for over a month, We've combined mechanics of FNF and some of pokemon to create our dreams</p>
+            
+            <h2>Gameplay</h2>
+            <p>In Launch, players fight other enemies to assert dominance over the battle field</p>
+            <ul style="margin-left: 20px; margin-bottom: 20px; line-height: 1.6;">
+                <li>Moveset timed presses</li>
+                <li>Pick strategic moves</li>
+                <li>Enjoy the game</li>
+
+            </ul>
+            
+            <p>Whether you prefer fighting or not, Launch offers multiple paths to success</p>
+        </section>
+
+        <section id="news">
+            <h1>Latest News</h1>
+            
+            <div class="news-item">
+                <div class="news-date">April 16, 2025</div>
+                <h2>Version 1.0 Released</h2>
+                <p>We're excited to announce the release of our game! Version 1.0 is now available for download.</p>
+            </div>
+        </section>
+
+        <section id="team">
+            <h1>Meet The Team</h1>
+            <p>Launch was created by a small but dedicated team of developers who share a passion for space and gaming.</p>
+            
+            <div class="team">
+                <div class="team-member">
+                    <img src="Assets/emir.jpg" alt="Alex Ray" class="member-image">
+                    <div class="member-info">
+                        <h3>Emir Sofi Sofwan</h3>
+                        <div class="member-role">Software Engineer</div>
+                        <p>rom Scratch prototypes to AAA-ready systems, Emir engineers seamless gameplay while crafting pixel-perfect UIs with HTML5/CSS/JS mastery.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="Assets/fahmi.jpg" alt="Sam Lee" class="member-image">
+                    <div class="member-info">
+                        <h3>Muhammad Izz Fahmi</h3>
+                        <div class="member-role">Lead Developer and Designer</div>
+                        <p>A designer who speaks fluent code—Izz has mastered everything from Scratch to JavaScript, shaping digital experiences that are as functional as they are stunning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="download">
+            <h1>Download Launch</h1>
+            <p>Get ready for the ultimate space adventure! Launch is available on multiple platforms.</p>
+            
+            <div class="download-section">
+                <h2>System Requirements</h2>
+                <p><strong>Minimum:</strong> Windows 10, Intel i5 processor, 8GB RAM, NVIDIA GTX 970 / AMD R9 290, 10GB storage</p>
+                <p><strong>Recommended:</strong> Windows 10/11, Intel i7 processor, 16GB RAM, NVIDIA RTX 2060 / AMD RX 5700, 15GB storage</p>
+                
+                <a href="Game folder download.zip" class="bttn" style="margin-top: 30px;" download="game">Download Now (Windows)</a>
+                
+                <div class="platforms">
+                    <div class="platform">
+                        <div class="platform-icon">🪟</div>
+                        <div>Windows</div>
+                    </div>
+                    <div class="platform">
+                        <div class="platform-icon">🍏</div>
+                        <div>Mac OS</div>
+                    </div>
+                    <div class="platform">
+                        <div class="platform-icon">🐧</div>
+                        <div>Linux</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Launch Game. All rights reserved.</p>
+        <p>Contact: info@launchgame.com</p>
+    </footer>
+
+    <script src="website.js"></script>
+</body>
+</html>
